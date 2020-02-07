@@ -4,74 +4,73 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import ChatScreen from '../screens/ChatScreen';
+import CallScreen from '../screens/CallScreen';
+import MoreScreen from '../screens/MoreScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
 });
 
-const HomeStack = createStackNavigator(
+const ChatStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Chat: ChatScreen,
   },
   config
 );
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+ChatStack.navigationOptions = {
+  tabBarLabel: 'Chat',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+        Platform.OS === 'android'
+          ? `ios-chatboxes` : 'ios-home'
       }
     />
   ),
 };
 
-HomeStack.path = '';
+ChatStack.path = '';
 
-const LinksStack = createStackNavigator(
+const CallStack = createStackNavigator(
   {
-    Links: LinksScreen,
+    Calls: CallScreen,
   },
   config
 );
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+CallStack.navigationOptions = {
+  tabBarLabel: 'Calls',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'android' ? 'md-call' : 'ios-phone'} />
   ),
 };
 
-LinksStack.path = '';
+CallStack.path = '';
 
-const SettingsStack = createStackNavigator(
+const MoreStack = createStackNavigator(
   {
-    Settings: SettingsScreen,
+    More: MoreScreen,
   },
   config
 );
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+MoreStack.navigationOptions = {
+  tabBarLabel: 'More',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'android' ? 'ios-more' : 'ios-more'} />
   ),
 };
 
-SettingsStack.path = '';
+MoreStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
+  ChatStack,
+  CallStack,
+  MoreStack,
 });
 
 tabNavigator.path = '';
