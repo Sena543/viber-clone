@@ -1,16 +1,17 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, View, Text, Image } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
+import { Ionicons, Entypo } from '@expo/vector-icons';
+import { FlatList } from 'react-native-gesture-handler';
+
+import CallList from '../components/call/callList';
 
 export default function CallScreen() {
+
   return (
-    <ScrollView style={styles.container}>
-      {/**
-       * Go ahead and delete ExpoLinksView and replace it with your content;
-       * we just wanted to provide you with some helpful links.
-       */}
-      <ExpoLinksView />
-    </ScrollView>
+   <View style={styles.container}>
+     <CallList/>
+    </View>
   );
 }
 
